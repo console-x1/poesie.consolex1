@@ -22,7 +22,9 @@ export const metadata: Metadata = {
     'pensées', 
     'art', 
     'culture',
-    'amour'
+    'amour',
+    'ce que je tais',
+    'Je pourrais te le dire'
   ],
   icons: {
     icon: '/avatar.png',

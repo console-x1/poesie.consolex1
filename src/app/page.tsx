@@ -4,7 +4,7 @@ import { join } from 'node:path';
 
 export const metadata: Metadata = {
   title: 'Mes poésies — console-x1',
-  description: 'Poésies personnelles, recueils et fragments.',
+  description: 'Découvrez les poésies de consolex1.',
 };
 
 type Poem = {
@@ -124,8 +124,8 @@ export default function Home() {
   return (
     <main className="page-shell">
       <header className="site-header">
-        <a className="wordmark" href="#accueil" aria-label="console-x1, accueil">
-          console-x1<span className="wordmark-dot">.</span>
+        <a className="wordmark" href="#accueil" aria-label="consolex1, accueil">
+          console<span className="wordmark-dot">x1</span>
         </a>
         <nav className="header-nav" aria-label="Navigation principale">
           <a href="#recueils">Poésies</a>
@@ -134,9 +134,9 @@ export default function Home() {
       </header>
 
       <section className="intro" id="accueil" aria-labelledby="intro-title">
-        <p className="eyebrow">ÉCRITURE PERSONNELLE</p>
-        <h1 id="intro-title">Mes poésies<span className="title-accent">.</span></h1>
-        <p className="intro-description">Textes, recueils et fragments.</p>
+        <p className="eyebrow">CE QUE JE TAIS</p>
+        <h1 id="intro-title">Mes poésies</h1>
+        <p className="intro-description">Decouvrez mes poésies, mes mots & silences.</p>
         <div className="intro-stats" aria-label={`${collections.length} recueils, ${poems.length} poésies`}>
           <span>{String(collections.length).padStart(2, '0')} recueils</span>
           <span className="stat-divider" aria-hidden="true">/</span>
@@ -151,7 +151,7 @@ export default function Home() {
         <div className="section-heading">
           <div>
             <p className="eyebrow">INDEX</p>
-            <h2 id="poems-title">Recueils<span className="heading-period">.</span></h2>
+            <h2 id="poems-title">Recueils</h2>
           </div>
           <p className="section-count">{String(collections.length).padStart(2, '0')} groupes</p>
         </div>
@@ -196,7 +196,7 @@ export default function Home() {
       </section>
 
       <footer className="site-footer">
-        <a className="footer-brand" href="#accueil">console-x1<span className="wordmark-dot">.</span></a>
+        <a className="footer-brand" href="#accueil">console<span className="wordmark-dot">x1</span></a>
         <span>© {new Date().getFullYear()}</span>
         <a href="https://me.consolex1.com">Portfolio <span aria-hidden="true">↗</span></a>
       </footer>
