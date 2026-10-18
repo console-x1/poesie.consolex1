@@ -1,0 +1,455 @@
+:root {
+  color-scheme: dark;
+  --background: #0c0c10;
+  --surface: #14141a;
+  --surface-hover: #191a21;
+  --foreground: #f4f4f6;
+  --muted: #a0a0ad;
+  --line: #292930;
+  --green: #32bf45;
+  --blue: #08a9e8;
+  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 50% 9%, rgb(35 37 72 / 28%), transparent 43rem),
+    var(--background);
+  color: var(--foreground);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.page-shell {
+  width: min(100% - 64px, 1120px);
+  margin: 0 auto;
+}
+
+.site-header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  height: 72px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+}
+
+.wordmark,
+.footer-brand {
+  font-size: 18px;
+  font-weight: 750;
+  letter-spacing: -0.055em;
+}
+
+.wordmark-dot {
+  color: var(--green);
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 29px;
+}
+
+.header-nav a,
+.site-footer > a:last-child {
+  color: #b8b8c2;
+  font-size: 13px;
+  transition: color 160ms ease;
+}
+
+.header-nav a:hover,
+.site-footer > a:last-child:hover {
+  color: var(--foreground);
+}
+
+.header-nav a span,
+.site-footer > a:last-child span {
+  color: var(--green);
+}
+
+.intro {
+  display: flex;
+  min-height: 550px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 76px 20px 91px;
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0 0 20px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+}
+
+.intro h1 {
+  margin: 0;
+  font-size: clamp(46px, 8vw, 74px);
+  font-weight: 750;
+  letter-spacing: -0.065em;
+  line-height: 1.08;
+}
+
+.title-accent {
+  color: var(--green);
+}
+
+.intro-description {
+  margin: 18px 0 26px;
+  color: #b8b8c2;
+  font-size: clamp(15px, 2vw, 19px);
+}
+
+.intro-stats {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 16px;
+  border: 1px solid #303039;
+  border-radius: 999px;
+  color: #c4c4ce;
+  font-size: 12px;
+}
+
+.stat-divider {
+  color: #555560;
+}
+
+.scroll-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 42px;
+  color: var(--muted);
+  font-size: 12px;
+  transition: color 160ms ease;
+}
+
+.scroll-link:hover {
+  color: var(--foreground);
+}
+
+.scroll-link span {
+  color: var(--green);
+}
+
+.collections-section {
+  padding: 28px 0 105px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 26px;
+}
+
+.section-heading .eyebrow {
+  margin-bottom: 7px;
+  color: var(--green);
+  font-size: 10px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: 31px;
+  font-weight: 650;
+  letter-spacing: -0.045em;
+}
+
+.heading-period {
+  color: var(--green);
+}
+
+.section-count {
+  margin: 0 0 5px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.collection-list {
+  display: grid;
+  gap: 14px;
+}
+
+.collection {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: linear-gradient(145deg, rgb(24 24 33 / 88%), rgb(17 17 23 / 95%));
+}
+
+.collection-heading {
+  display: flex;
+  min-height: 67px;
+  align-items: center;
+  gap: 15px;
+  padding: 0 22px;
+  border-bottom: 1px solid var(--line);
+}
+
+.collection-number {
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.collection-heading h3 {
+  flex: 1;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.collection-count {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.poem-list {
+  padding: 0 22px;
+}
+
+.poem + .poem {
+  border-top: 1px solid var(--line);
+}
+
+.poem-summary {
+  display: grid;
+  min-height: 63px;
+  grid-template-columns: 145px minmax(0, 1fr) 20px;
+  align-items: center;
+  gap: 18px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.poem-summary::-webkit-details-marker {
+  display: none;
+}
+
+.poem-date {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.poem-title {
+  font-size: 14px;
+  font-weight: 550;
+}
+
+.poem-toggle {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #3a3a44;
+  border-radius: 50%;
+}
+
+.poem-toggle::before,
+.poem-toggle::after {
+  position: absolute;
+  top: 8px;
+  left: 5px;
+  width: 6px;
+  height: 1px;
+  background: #bdbdc7;
+  content: '';
+}
+
+.poem-toggle::after {
+  transform: rotate(90deg);
+  transition: transform 160ms ease;
+}
+
+.poem[open] .poem-toggle::after {
+  transform: rotate(0);
+}
+
+.poem-content {
+  padding: 2px 37px 23px 163px;
+}
+
+.poem-text {
+  margin: 0;
+  color: #dedee5;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 15px;
+  line-height: 1.9;
+  white-space: pre-wrap;
+}
+
+.poem-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 22px;
+  padding-top: 13px;
+  border-top: 1px solid #292930;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.poem-meta span:last-child {
+  color: #c5c5cf;
+}
+
+.empty-state {
+  display: grid;
+  min-height: 130px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--blue);
+  border-radius: 7px;
+  background: rgb(20 20 26 / 80%);
+  color: #c8c8d0;
+  font-size: 14px;
+}
+
+.empty-state p {
+  margin: 0;
+}
+
+.site-footer {
+  display: flex;
+  min-height: 75px;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--line);
+}
+
+.footer-brand {
+  font-size: 14px;
+}
+
+.site-footer > span {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+@media (max-width: 650px) {
+  .page-shell {
+    width: min(100% - 36px, 540px);
+  }
+
+  .site-header {
+    height: 63px;
+  }
+
+  .wordmark {
+    font-size: 16px;
+  }
+
+  .header-nav {
+    gap: 18px;
+  }
+
+  .header-nav a {
+    font-size: 12px;
+  }
+
+  .intro {
+    min-height: 435px;
+    padding: 65px 4px 75px;
+  }
+
+  .intro h1 {
+    font-size: clamp(43px, 12vw, 64px);
+  }
+
+  .collections-section {
+    padding: 18px 0 76px;
+  }
+
+  .section-heading h2 {
+    font-size: 27px;
+  }
+
+  .collection-heading {
+    min-height: 60px;
+    gap: 10px;
+    padding: 0 14px;
+  }
+
+  .collection-heading h3 {
+    font-size: 14px;
+  }
+
+  .collection-count {
+    font-size: 10px;
+  }
+
+  .poem-list {
+    padding: 0 14px;
+  }
+
+  .poem-summary {
+    min-height: 66px;
+    grid-template-columns: minmax(0, 1fr) 20px;
+    gap: 5px 12px;
+    padding: 11px 0;
+  }
+
+  .poem-date {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: 10px;
+  }
+
+  .poem-title {
+    grid-column: 1;
+    grid-row: 2;
+    font-size: 13px;
+  }
+
+  .poem-toggle {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+
+  .poem-content {
+    padding: 0 0 20px;
+  }
+
+  .poem-text {
+    font-size: 14px;
+  }
+
+  .site-footer > span,
+  .site-footer > a:last-child {
+    font-size: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
