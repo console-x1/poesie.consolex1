@@ -3,28 +3,19 @@ import type { ReactNode } from 'react';
 import './globals.css';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://poesie.consolex1.com'),
   title: {
-    default: 'consolex1 | Poésies',
-    template: '%s | consolex1',
+    default: 'Poésies — Des voix, des recueils',
+    template: '%s | Poésies',
   },
-  description: 'Découvrez les poésies de consolex1',
+  description: 'Un espace collectif pour lire les poésies de plusieurs auteurs.',
   keywords: [
-    'poésie', 
-    'poèmes', 
-    'écriture', 
-    'carnet', 
-    'journal', 
-    'littérature', 
-    'créativité', 
-    'inspiration', 
-    'émotions', 
-    'réflexions', 
-    'pensées', 
-    'art', 
-    'culture',
-    'amour',
-    'ce que je tais',
-    'Je pourrais te le dire'
+    'poésie',
+    'poèmes',
+    'écriture',
+    'littérature',
+    'recueils',
+    'auteurs',
   ],
   icons: {
     icon: '/avatar.png',
@@ -32,10 +23,10 @@ export const metadata: Metadata = {
     apple: '/avatar.png',
   },
   openGraph: {
-    title: 'consolex1 | Poésies',
-    description: 'Découvrez les poésies de consolex1',
+    title: 'Poésies — Des voix, des recueils',
+    description: 'Un espace collectif pour lire les poésies de plusieurs auteurs.',
     url: 'https://poesie.consolex1.com',
-    siteName: 'consolex1',
+    siteName: 'Poésies',
     type: 'website',
     locale: 'fr_FR',
     images: [
@@ -43,15 +34,14 @@ export const metadata: Metadata = {
         url: '/avatar.png',
         width: 1200,
         height: 630,
-        alt: 'consolex1 — Poésies',
+        alt: 'Poésies — Des voix, des recueils',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'consolex1 — Poésies',
-    description:
-      'Découvrez les poésies de consolex1',
+    title: 'Poésies — Des voix, des recueils',
+    description: 'Un espace collectif pour lire les poésies de plusieurs auteurs.',
     images: ['/avatar.png'],
   },
   robots: {

@@ -122,8 +122,11 @@ a {
 
 .intro-stats {
   display: flex;
+  width: fit-content;
   align-items: center;
+  justify-content: center;
   gap: 12px;
+  margin-inline: auto;
   padding: 9px 16px;
   border: 1px solid #303039;
   border-radius: 999px;
@@ -151,6 +154,132 @@ a {
 
 .scroll-link span {
   color: var(--green);
+}
+
+.authors-section {
+  padding: 28px 0 105px;
+}
+
+.author-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+  gap: 16px;
+}
+
+.author-card {
+  display: flex;
+  min-height: 245px;
+  flex-direction: column;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: linear-gradient(145deg, rgb(24 24 33 / 88%), rgb(17 17 23 / 95%));
+  transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.author-card:hover {
+  transform: translateY(-3px);
+  border-color: #41414b;
+  background-color: var(--surface-hover);
+}
+
+.author-card-top,
+.author-card-profile {
+  display: flex;
+  align-items: center;
+}
+
+.author-card-top {
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+
+.author-number,
+.author-arrow {
+  color: var(--green);
+  font-size: 12px;
+}
+
+.author-card-profile {
+  gap: 15px;
+}
+
+.author-avatar {
+  flex: 0 0 auto;
+  overflow: hidden;
+  border: 1px solid #34343e;
+  border-radius: 50%;
+  background: var(--surface);
+  object-fit: cover;
+}
+
+.author-card-profile h3 {
+  margin: 0 0 6px;
+  font-size: 17px;
+  font-weight: 650;
+  letter-spacing: -0.025em;
+}
+
+.author-poem-count {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.author-description {
+  margin: 18px 0 24px;
+  color: #b8b8c2;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.author-card-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  color: #dedee5;
+  font-size: 12px;
+}
+
+.author-card-link span {
+  color: var(--green);
+}
+
+.author-intro {
+  display: flex;
+  min-height: 365px;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  padding: 65px 20px 75px;
+  border-bottom: 1px solid var(--line);
+}
+
+.author-avatar-large {
+  width: 88px;
+  height: 88px;
+}
+
+.author-intro-copy .eyebrow {
+  margin-bottom: 11px;
+  color: var(--green);
+}
+
+.author-intro h1 {
+  margin: 0;
+  font-size: clamp(42px, 7vw, 62px);
+  font-weight: 750;
+  letter-spacing: -0.06em;
+  line-height: 1.08;
+}
+
+.author-intro .intro-description {
+  max-width: 520px;
+  margin: 12px 0 19px;
+  font-size: 15px;
+  line-height: 1.7;
 }
 
 .collections-section {
@@ -374,8 +503,42 @@ a {
     padding: 65px 4px 75px;
   }
 
+  .authors-section {
+    padding: 18px 0 76px;
+  }
+
   .intro h1 {
     font-size: clamp(43px, 12vw, 64px);
+  }
+
+  .author-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .author-card {
+    min-height: 220px;
+    padding: 19px;
+  }
+
+  .author-intro {
+    min-height: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 19px;
+    padding: 65px 0 42px;
+  }
+
+  .author-avatar-large {
+    width: 72px;
+    height: 72px;
+  }
+
+  .author-intro h1 {
+    font-size: 44px;
+  }
+
+  .author-intro .intro-description {
+    font-size: 14px;
   }
 
   .collections-section {

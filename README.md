@@ -1,38 +1,53 @@
 # poesie.consolex1.com
 
-Un site statique pour publier ses poésies. Pas de dashboard, de backend ni de
-balises à ajouter au texte.
+Un site statique où plusieurs auteurs peuvent publier leurs poésies, sans
+dashboard ni backend.
+
+## Organisation
+
+Chaque auteur a son dossier dans [`content/`](./content). Le nom du dossier
+définit son identifiant et l'adresse de sa page : `content/consolex1/` est
+accessible sur `/consolex1`.
+
+```text
+content/
+  consolex1/
+    profile.json
+    ordre-recueils.json
+    poesies/
+      Ce que je tais/
+        2026-10-19_Tu-ne-sauras-jamais.txt
+```
+
+Le fichier `profile.json` contient le nom, la description et le chemin de
+l'avatar de l'auteur. Les avatars sont des fichiers statiques sous `public/`.
+`ordre-recueils.json`, à la racine du dossier de l'auteur, liste les dossiers
+de recueils dans l'ordre d'affichage souhaité.
 
 ## Ajouter une poésie
 
-Crée un fichier `.txt` dans [`src/content/poesies`](./src/content/poesies). Son
-nom donne la date d'écriture et le titre :
+Crée un fichier `YYYY-MM-DD_Nom-du-poeme.txt` dans le dossier du recueil.
+Écris le titre à la première ligne, saute une ligne, colle le poème tel quel,
+laisse une ligne vide à la fin, puis ajoute l'année d'écriture et le nom d'auteur,
+sur deux lignes séparées :
 
 ```text
-YYYY-MM-DD_Nom-du-poeme.txt
-```
+Le titre de ma poésie
 
-Dans le fichier, colle le poème, laisse une ligne vide, puis ajoute les trois
-informations de fin, chacune sur sa propre ligne : le nom du recueil, l'année
-d'écriture et le nom d'auteur. Le titre vient du nom de fichier : tu peux
-l'omettre du texte. S'il est déjà écrit en première ligne, il ne sera pas répété.
+La première ligne du poème
+La deuxième, juste en dessous.
 
-Par exemple, `2025-03-14_Le-temps-des-fleurs.txt` :
+Un nouveau paragraphe, séparé par une ligne vide.
 
-```text
-Le vent traverse les rues,
-emportant les mots que l'on garde.
-
-Les jours reviennent doucement.
-
-Fragments
-2025
+2026
 Louis
 ```
 
-Le titre est généré à partir du nom de fichier (`Le temps des fleurs`). Les
-poésies sont triées de la plus récente à la plus ancienne et regroupées par nom
-de recueil. Les poésies d'un même recueil gardent cet ordre chronologique.
+Le nom de fichier sert à afficher et trier les poésies par date ; il ne
+remplace pas le titre saisi à la première ligne.
+
+Les instructions complètes pour ajouter un auteur et ses recueils se trouvent
+dans [`content/README.md`](./content/README.md).
 
 ## Commandes
 
@@ -43,4 +58,4 @@ de recueil. Les poésies d'un même recueil gardent cet ordre chronologique.
 ## Déploiement
 
 Le workflow GitHub Actions `.github/workflows/nextjs.yml` construit et publie
-le site dans le dossier `out`.
+le site statique dans le dossier `out`.
