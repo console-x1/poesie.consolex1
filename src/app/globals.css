@@ -230,6 +230,7 @@ a {
   color: #b8b8c2;
   font-size: 13px;
   line-height: 1.7;
+  white-space: pre-line;
 }
 
 .author-card-link {
@@ -280,6 +281,7 @@ a {
   margin: 12px 0 19px;
   font-size: 15px;
   line-height: 1.7;
+  white-space: pre-line;
 }
 
 .collections-section {
