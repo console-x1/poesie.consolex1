@@ -148,19 +148,20 @@ function readPoem(path: string, filename: string): Poem {
     .split(/\r?\n/);
   const metadataStart = lines.length - 2;
   const title = lines[0]?.trim();
-  const year = lines[metadataStart]?.trim();
-  const author = lines[metadataStart + 1]?.trim();
+  const metadata = lines.slice(metadataStart).map((line) => line.trim());
+  const yearIndex = metadata.findIndex((line) => /^\d{4}$/.test(line));
+  const year = metadata[yearIndex];
+  const author = metadata[1 - yearIndex];
 
   if (
     !title ||
     metadataStart < 2 ||
     lines[metadataStart - 1]?.trim() !== '' ||
-    !year ||
-    !/^\d{4}$/.test(year) ||
+    yearIndex === -1 ||
     !author
   ) {
     throw new Error(
-      `Poésie invalide dans ${filename}. La première ligne doit contenir le titre ; termine le fichier par une ligne vide, l'année et le nom d'auteur.`,
+      `Poésie invalide dans ${filename}. La première ligne doit contenir le titre ; termine le fichier par une ligne vide, l'année et le nom d'auteur, chacun sur sa propre ligne.`,
     );
   }
 
