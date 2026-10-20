@@ -11,6 +11,10 @@ export const metadata: Metadata = {
 
 export default function Home() {
   const authors = getAuthors();
+  const poemCount = authors.reduce(
+    (total, author) => total + getPoemCount(author),
+    0,
+  );
 
   return (
     <main className="page-shell">
@@ -26,11 +30,18 @@ export default function Home() {
         </p>
         <div
           className="intro-stats"
-          aria-label={`${authors.length} ${authors.length === 1 ? 'auteur' : 'auteurs'}`}
+          aria-label={`${authors.length} ${authors.length === 1 ? 'auteur' : 'auteurs'}, ${
+            poemCount
+          } ${poemCount === 1 ? 'poésie' : 'poésies'}`}
         >
           <span>
             {String(authors.length).padStart(2, '0')}{' '}
             {authors.length === 1 ? 'auteur' : 'auteurs'}
+          </span>
+          <span className="stat-divider" aria-hidden="true">/</span>
+          <span>
+            {String(poemCount).padStart(2, '0')}{' '}
+            {poemCount === 1 ? 'poésie' : 'poésies'}
           </span>
         </div>
         <a className="scroll-link" href="#auteurs">

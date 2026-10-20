@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { SiteFooter, SiteHeader } from '@/components/SiteChrome';
-import { formatDate, getAuthors, getCollections } from '@/lib/content';
+import { formatDate, getAuthors, getAuthorPoems, getCollections } from '@/lib/content';
 
 type AuthorPageProps = {
   params: {
@@ -19,13 +20,43 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: AuthorPageProps): Metadata {
   const author = getAuthors().find((entry) => entry.slug === params.author);
 
-  return author
-    ? {
-        title: author.name,
-        description: author.description,
-        keywords: [author.name, 'poésie', 'recueil', 'poème', 'poète'],
-      }
-    : {};
+  if (!author) {
+    return {};
+  }
+
+  const collections = getCollections(author);
+  const collectionNames = collections.map((collection) => collection.name);
+  const poemTitles = collections.flatMap((collection) =>
+    collection.poems.map((poem) => poem.title),
+  );
+  const contentSummary = [
+    collectionNames.length > 0 ? `Recueils : ${collectionNames.join(', ')}.` : '',
+    poemTitles.length > 0 ? `Poèmes : ${poemTitles.join(', ')}.` : '',
+  ].filter(Boolean).join(' ');
+
+  return {
+    title: author.name,
+    description: [author.description, contentSummary].filter(Boolean).join(' ').slice(0, 300),
+    keywords: Array.from(new Set([
+      author.name,
+      'poésie',
+      'recueil',
+      'poème',
+      'poète',
+      ...collectionNames,
+      ...poemTitles,
+    ])),
+    alternates: {
+      canonical: `/${author.slug}/`,
+    },
+    openGraph: {
+      title: author.name,
+      description: author.description,
+      url: `/${author.slug}/`,
+      type: 'profile',
+      images: [{ url: author.avatar, alt: author.name }],
+    },
+  };
 }
 
 export default function AuthorPage({ params }: AuthorPageProps) {
@@ -108,7 +139,9 @@ export default function AuthorPage({ params }: AuthorPageProps) {
                     >
                       <summary className="poem-summary">
                         <span className="poem-date">{formatDate(poem.date)}</span>
-                        <span className="poem-title">{poem.title}</span>
+                        <Link className="poem-title" href={`/${author.slug}/${poem.slug}/`}>
+                          {poem.title}
+                        </Link>
                         <span className="poem-toggle" aria-hidden="true" />
                       </summary>
                       <div className="poem-content">

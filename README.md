@@ -46,6 +46,11 @@ Louis
 Le nom de fichier sert à afficher et trier les poésies par date ; il ne
 remplace pas le titre saisi à la première ligne.
 
+Chaque titre de poésie est aussi un lien vers sa page dédiée à
+`/<identifiant-auteur>/<slug-du-fichier>/`. Les métadonnées SEO des pages
+d'auteur et de poésie sont générées à partir du profil et des fichiers de
+contenu.
+
 Les instructions complètes pour ajouter un auteur et ses recueils se trouvent
 dans [`content/README.md`](./content/README.md).
 
@@ -58,4 +63,6 @@ dans [`content/README.md`](./content/README.md).
 ## Déploiement
 
 Le workflow GitHub Actions `.github/workflows/nextjs.yml` construit et publie
-le site statique dans le dossier `out`.
+le site statique dans le dossier `out`. Le sitemap est généré automatiquement à
+la compilation à partir des auteurs et des poésies présents dans `content/` ;
+ajouter un contenu le met donc à jour sans modifier de fichier sitemap à la main.

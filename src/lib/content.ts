@@ -9,11 +9,13 @@ export type Author = {
 };
 
 export type Poem = {
+  slug: string;
   date: string;
   title: string;
   text: string;
   year: string;
   author: string;
+  collection: string;
 };
 
 export type Collection = {
@@ -77,6 +79,23 @@ export function getCollections(author: Author): Collection[] {
   return readCollections(author);
 }
 
+export function getAuthorPoems(author: Author): Poem[] {
+  const poems = getCollections(author).flatMap((collection) => collection.poems);
+  const slugs = new Set<string>();
+
+  for (const poem of poems) {
+    if (slugs.has(poem.slug)) {
+      throw new Error(
+        `Slug de poésie en doublon pour ${author.slug} : ${poem.slug}. Les noms de fichiers doivent produire des URL uniques par auteur.`,
+      );
+    }
+
+    slugs.add(poem.slug);
+  }
+
+  return poems;
+}
+
 function readCollections(author: Author): Collection[] {
   const authorDirectory = join(contentDirectory, author.slug);
   const poemsDirectory = join(authorDirectory, 'poesies');
@@ -115,13 +134,13 @@ function readCollections(author: Author): Collection[] {
     const poems = readdirSync(directory)
       .filter((filename) => filename.toLowerCase().endsWith('.txt'))
       .sort((first, second) => second.localeCompare(first, 'fr'))
-      .map((filename) => readPoem(join(directory, filename), filename));
+      .map((filename) => readPoem(join(directory, filename), filename, name));
 
     return { name, poems };
   }).filter((collection) => collection.poems.length > 0);
 }
 
-function readPoem(path: string, filename: string): Poem {
+function readPoem(path: string, filename: string, collection: string): Poem {
   const match = filename.match(/^(\d{4}-\d{2}-\d{2})_(.+)\.txt$/i);
 
   if (!match) {
@@ -166,11 +185,13 @@ function readPoem(path: string, filename: string): Poem {
   }
 
   return {
+    slug: slug.toLocaleLowerCase('fr-FR'),
     date,
     title,
     text: lines.slice(1, metadataStart - 1).join('\n').replace(/^\n+/, '').trimEnd(),
     year,
     author,
+    collection,
   };
 }
 

@@ -390,6 +390,17 @@ a {
   font-weight: 550;
 }
 
+.poem-summary .poem-title {
+  width: fit-content;
+  max-width: 100%;
+  justify-self: start;
+  color: inherit;
+}
+
+.poem-summary .poem-title:hover {
+  color: var(--green);
+}
+
 .poem-toggle {
   position: relative;
   width: 18px;
@@ -479,6 +490,63 @@ a {
   font-size: 11px;
 }
 
+.single-poem {
+  width: min(100%, 760px);
+  min-height: calc(100vh - 148px);
+  margin: 0 auto;
+  padding: 100px 32px 90px;
+}
+
+.single-poem .eyebrow {
+  margin-bottom: 22px;
+  color: var(--green);
+}
+
+.single-poem h1 {
+  margin: 0;
+  font-size: clamp(38px, 7vw, 62px);
+  font-weight: 750;
+  letter-spacing: -0.06em;
+  line-height: 1.12;
+}
+
+.single-poem-date {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.single-poem-divider {
+  width: 42px;
+  height: 2px;
+  margin: 32px 0;
+  background: var(--green);
+}
+
+.single-poem-text {
+  margin: 0;
+  color: #dedee5;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 17px;
+  line-height: 2;
+  white-space: pre-wrap;
+}
+
+.single-poem-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 38px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.single-poem-meta a:hover {
+  color: var(--green);
+}
+
 @media (max-width: 650px) {
   .page-shell {
     width: min(100% - 36px, 540px);
@@ -541,6 +609,19 @@ a {
 
   .author-intro .intro-description {
     font-size: 14px;
+  }
+
+  .single-poem {
+    min-height: calc(100vh - 138px);
+    padding: 68px 4px 60px;
+  }
+
+  .single-poem h1 {
+    font-size: clamp(36px, 10vw, 50px);
+  }
+
+  .single-poem-text {
+    font-size: 15px;
   }
 
   .collections-section {
