@@ -16,7 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ...(latestPoemDate
         ? { lastModified: new Date(`${latestPoemDate}T00:00:00.000Z`) }
         : {}),
-      changeFrequency: 'weekly',
+      changeFrequency: 'daily',
       priority: 0.8,
     };
   });
@@ -25,7 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${siteUrl}/${encodeURIComponent(author.slug)}/${encodeURIComponent(poem.slug)}/`,
       lastModified: new Date(`${poem.date}T00:00:00.000Z`),
       changeFrequency: 'monthly',
-      priority: 0.7,
+      priority: 0.5,
     })),
   );
 
