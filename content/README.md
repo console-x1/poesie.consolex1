@@ -22,6 +22,11 @@ du fichier ; le nom du fichier sert à la date et à l'ordre chronologique.
 Après le texte, ajoute une ligne vide puis l'année et le nom de l'auteur,
 chacun sur sa propre ligne.
 
+Plusieurs poèmes d'un même auteur peuvent partager `Sans-nom` dans leur nom de
+fichier. Leurs URL restent uniques : le site ajoute automatiquement la date au
+slug des poèmes concernés. Si la date ne suffit pas, il ajoute aussi le nom du
+recueil, puis un numéro en dernier recours.
+
 ```text
 Le titre de ma poésie
 

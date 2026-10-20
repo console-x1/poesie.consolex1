@@ -45,6 +45,10 @@ Louis
 
 Le nom de fichier sert à afficher et trier les poésies par date ; il ne
 remplace pas le titre saisi à la première ligne.
+Plusieurs fichiers d'un même auteur peuvent avoir le même slug, par exemple
+`2026-10-20_Sans-nom.txt` et `2026-10-21_Sans-nom.txt`. Pour éviter les
+collisions d'URL, le site ajoute alors automatiquement la date au slug (et le
+nom du recueil si la date ne suffit pas).
 
 Chaque titre de poésie est aussi un lien vers sa page dédiée à
 `/<identifiant-auteur>/<slug-du-fichier>/`. Les métadonnées SEO des pages

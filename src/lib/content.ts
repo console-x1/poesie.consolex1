@@ -80,20 +80,7 @@ export function getCollections(author: Author): Collection[] {
 }
 
 export function getAuthorPoems(author: Author): Poem[] {
-  const poems = getCollections(author).flatMap((collection) => collection.poems);
-  const slugs = new Set<string>();
-
-  for (const poem of poems) {
-    if (slugs.has(poem.slug)) {
-      throw new Error(
-        `Slug de poésie en doublon pour ${author.slug} : ${poem.slug}. Les noms de fichiers doivent produire des URL uniques par auteur.`,
-      );
-    }
-
-    slugs.add(poem.slug);
-  }
-
-  return poems;
+  return getCollections(author).flatMap((collection) => collection.poems);
 }
 
 function readCollections(author: Author): Collection[] {
@@ -129,7 +116,7 @@ function readCollections(author: Author): Collection[] {
       .sort((first, second) => first.localeCompare(second, 'fr')),
   ];
 
-  return orderedNames.map((name) => {
+  const collections = orderedNames.map((name) => {
     const directory = join(poemsDirectory, name);
     const poems = readdirSync(directory)
       .filter((filename) => filename.toLowerCase().endsWith('.txt'))
@@ -138,6 +125,51 @@ function readCollections(author: Author): Collection[] {
 
     return { name, poems };
   }).filter((collection) => collection.poems.length > 0);
+
+  const poems = collections.flatMap((collection) => collection.poems);
+  const slugCounts = new Map<string, number>();
+
+  for (const poem of poems) {
+    slugCounts.set(poem.slug, (slugCounts.get(poem.slug) ?? 0) + 1);
+  }
+
+  const reservedSlugs = new Set(poems.map((poem) => poem.slug));
+  const assignedSlugs = new Set<string>();
+
+  for (const poem of poems) {
+    if ((slugCounts.get(poem.slug) ?? 0) === 1) {
+      assignedSlugs.add(poem.slug);
+      continue;
+    }
+
+    const baseSlug = poem.slug;
+    const collectionSlug = slugify(poem.collection);
+    let candidate = `${baseSlug}-${poem.date}`;
+
+    if (reservedSlugs.has(candidate) || assignedSlugs.has(candidate)) {
+      candidate = `${candidate}-${collectionSlug}`;
+    }
+
+    let suffix = 2;
+    while (reservedSlugs.has(candidate) || assignedSlugs.has(candidate)) {
+      candidate = `${baseSlug}-${poem.date}-${collectionSlug}-${suffix}`;
+      suffix += 1;
+    }
+
+    poem.slug = candidate;
+    assignedSlugs.add(candidate);
+  }
+
+  return collections;
+}
+
+function slugify(value: string): string {
+  return value
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLocaleLowerCase('fr-FR')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
 }
 
 function readPoem(path: string, filename: string, collection: string): Poem {
