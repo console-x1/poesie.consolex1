@@ -11,6 +11,38 @@ type PoemPageProps = {
   };
 };
 
+function createPoemDescription(text: string): string {
+  const normalizedText = text.replace(/\s+/g, ' ').trim();
+
+  if (normalizedText.length <= 160) {
+    return normalizedText;
+  }
+
+  const firstLine = text
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .find(Boolean);
+  const firstSentence = normalizedText.match(/^.{1,155}?[.!?…](?=\s|$)/u)?.[0];
+  const completeExcerpts = [firstSentence, firstLine]
+    .filter(
+      (excerpt): excerpt is string =>
+        typeof excerpt === 'string' && excerpt.length <= 155,
+    )
+    .sort((first, second) => second.length - first.length);
+  const excerpt = completeExcerpts[0];
+
+  if (excerpt) {
+    return `${excerpt}${normalizedText.length > excerpt.length ? ' […]' : ''}`;
+  }
+
+  const excerptWithoutPartialWord = normalizedText
+    .slice(0, 155)
+    .replace(/\s+\S*$/, '');
+  const safeExcerpt = excerptWithoutPartialWord || normalizedText.slice(0, 155);
+
+  return `${safeExcerpt.trimEnd()} […]`;
+}
+
 export const dynamicParams = false;
 
 export function generateStaticParams() {
@@ -32,7 +64,7 @@ export function generateMetadata({ params }: PoemPageProps): Metadata {
     return {};
   }
 
-  const description = poem.text.replace(/\s+/g, ' ').trim().slice(0, 160);
+  const description = createPoemDescription(poem.text);
 
   return {
     title: `${poem.title} — ${author.name}`,
