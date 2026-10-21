@@ -68,19 +68,19 @@ a {
 }
 
 .header-nav a,
-.site-footer > a:last-child {
+.site-footer > a:not(.footer-brand) {
   color: #b8b8c2;
   font-size: 13px;
   transition: color 160ms ease;
 }
 
 .header-nav a:hover,
-.site-footer > a:last-child:hover {
+.site-footer > a:not(.footer-brand):hover {
   color: var(--foreground);
 }
 
 .header-nav a span,
-.site-footer > a:last-child span {
+.site-footer > a:not(.footer-brand) span {
   color: var(--green);
 }
 
@@ -547,6 +547,69 @@ a {
   color: var(--green);
 }
 
+.legal-page {
+  width: min(100%, 780px);
+  min-height: calc(100vh - 148px);
+  margin: 0 auto;
+  padding: 83px 32px 90px;
+}
+
+.legal-page > .eyebrow {
+  margin-bottom: 15px;
+  color: var(--green);
+}
+
+.legal-page h1 {
+  margin: 0;
+  font-size: clamp(36px, 6vw, 54px);
+  font-weight: 750;
+  letter-spacing: -0.06em;
+  line-height: 1.12;
+}
+
+.legal-intro {
+  margin: 17px 0 42px;
+  color: #b8b8c2;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.legal-section {
+  padding: 24px 0;
+  border-top: 1px solid var(--line);
+}
+
+.legal-section h2 {
+  margin: 0 0 13px;
+  font-size: 17px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.legal-section p,
+.legal-note {
+  color: #c0c0ca;
+  font-size: 13px;
+  line-height: 1.85;
+}
+
+.legal-section p {
+  margin: 9px 0 0;
+}
+
+.legal-section a {
+  color: var(--green);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.legal-note {
+  margin: 12px 0 0;
+  padding: 17px 19px;
+  border-left: 2px solid var(--blue);
+  background: var(--surface);
+}
+
 @media (max-width: 650px) {
   .page-shell {
     width: min(100% - 36px, 540px);
@@ -624,6 +687,19 @@ a {
     font-size: 15px;
   }
 
+  .legal-page {
+    min-height: calc(100vh - 138px);
+    padding: 62px 4px 60px;
+  }
+
+  .legal-page h1 {
+    font-size: 38px;
+  }
+
+  .legal-intro {
+    margin-bottom: 30px;
+  }
+
   .collections-section {
     padding: 18px 0 76px;
   }
@@ -683,8 +759,14 @@ a {
   }
 
   .site-footer > span,
-  .site-footer > a:last-child {
+  .site-footer > a:not(.footer-brand) {
     font-size: 10px;
+  }
+
+  .site-footer {
+    flex-wrap: wrap;
+    gap: 14px;
+    padding: 18px 0;
   }
 }
 

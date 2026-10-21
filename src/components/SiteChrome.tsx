@@ -31,6 +31,7 @@ export function SiteFooter() {
         Poésies
       </Link>
       <span>Un espace pour les mots.</span>
+      <Link href="/conditions/">Droits &amp; conditions</Link>
       <a href="https://me.consolex1.com">
         consolex1 Portfolio <span aria-hidden="true">↗</span>
       </a>

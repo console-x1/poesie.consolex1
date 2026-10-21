@@ -43,6 +43,11 @@ Marie
 2. Ajoute une image sous `public/` et indique son chemin public dans le profil.
 3. Ajoute des dossiers de recueils et des fichiers `.txt` au format ci-dessus.
 
+Avant d'ajouter un texte pour quelqu'un d'autre, partage avec cette personne la
+page `/conditions/` et vérifie qu'elle autorise sa publication. Les auteurs
+gardent leurs droits ; la mise en ligne autorise uniquement l'affichage du
+texte et l'utilisation de courts extraits attribués pour promouvoir le site.
+
 Exemple de `profile.json` :
 
 ```json

@@ -119,8 +119,11 @@ export default function PoemPage({ params }: PoemPageProps) {
         <div className="single-poem-divider" aria-hidden="true" />
         <p className="single-poem-text">{poem.text}</p>
         <footer className="single-poem-meta">
-          <Link href={`/${author.slug}/`}>{poem.author}</Link>
-          <span>{poem.year}</span>
+          <span>
+            © {poem.year}{' '}
+            <Link href={`/${author.slug}/`}>{poem.author}</Link>
+            {' — Tous droits réservés.'}
+          </span>
         </footer>
       </article>
 

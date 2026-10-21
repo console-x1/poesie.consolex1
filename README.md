@@ -57,6 +57,8 @@ contenu.
 
 Les instructions complètes pour ajouter un auteur et ses recueils se trouvent
 dans [`content/README.md`](./content/README.md).
+Les règles concernant les droits des auteurs, la republication et les demandes
+de retrait sont publiées sur la page [Droits & conditions](https://poesie.consolex1.com/conditions/).
 
 ## Commandes
 

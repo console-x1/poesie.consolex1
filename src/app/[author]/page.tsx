@@ -147,7 +147,7 @@ export default function AuthorPage({ params }: AuthorPageProps) {
                       <div className="poem-content">
                         <p className="poem-text">{poem.text}</p>
                         <div className="poem-meta">
-                          <span>{poem.author}</span>
+                          <span>© {poem.author} - Tous droits réservés</span>
                           <span>{poem.year}</span>
                         </div>
                       </div>
